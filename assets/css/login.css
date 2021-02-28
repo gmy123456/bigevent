@@ -1,0 +1,58 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('../images/login_bg.jpg'); */
+    background: url('../images/login_bg.jpg');
+}
+.logo {
+    width: 146px;
+    height: 60px;
+    background: url('../images/logo.png');
+}
+.dl{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 310px;
+    background-color: #fff;
+}
+.title-img {
+    height: 66px;
+    background:url('../images/login_title.png') no-repeat center;
+}
+.login-box {
+    margin: 0 30px;
+}
+.uname {
+    position: relative;
+    margin: 15px auto;
+}
+.pwd {
+    position: relative;
+    margin-bottom: 15px;
+}
+.zhuce {
+    float: right;
+    margin: 15px auto;
+    font-size: 12px;
+}
+i {
+    position: absolute;
+    left: 4px;
+    top: 10px;
+}
+.layui-input{
+    padding-left: 25px;
+}
+.reg-box {
+    display: none;
+    margin: 0 30px;
+}
+.reg-box .denglu a{
+    display: block;
+    float: right;
+}
