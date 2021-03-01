@@ -31,25 +31,54 @@ $(function () {
         }
     })
     // 监听注册表单的提交事件
-    $('#form_reg').on('submit', function (e) {
-        // 1. 阻止默认的提交行为
+    $('#form_reg').on('submit',function(e){
         e.preventDefault()
-        $.post('http://ajax.frontend.itheima.net/api/reguser',
-            {
-                username: $('#form_reg [name=username]').val(),
-                password: $('#form_reg [name=password]').val()
-            },
-            function (res) {
-                if (status !== 0) {
-                    return res.message
-                    // console.log(res.message);
+        var data = {
+            username:$('#form_reg [name=username]').val(),
+            password:$('#form_reg [name=password]').val()
+        }
+        console.log($('#form_reg [name=password]').val());
+        $.post('/api/reguser',data,function(res){
+            if(res.status !== 0){
+                console.log(res);
+                return layer.msg(res.message)
+            }
+            layer.msg('注册成功，请登录！')
+            $('#link_login').click()
+        })
+    })
+        // $.post('http://ajax.frontend.itheima.net/api/reguser',
+        //     {
+        //         username: $('#form_reg [name=username]').val(),
+        //         password: $('#form_reg [name=password]').val()
+        //     },
+        //     function (res) {
+        //         if (status !== 0) {
+        //             return res.message
+        //             // console.log(res.message);
+        //         }
+        //         console.log('注册成功');
+        //         layer.msg('注册成功，请登录')
+        //         $('#link_login').click()
+        //     })
+    
+    //监听登录表单的提交事件
+    $('#form_login').on('submit',function(e){
+        e.preventDefault()
+        $.ajax({
+            type:'POST',
+            url:'/api/login',
+            data:$(this).serialize(),
+            success:function(res){
+                console.log(res);
+                console.log($(this).serialize());
+                if(res.status!==0){
+                    return layer.msg('登陆失败！')
                 }
-                console.log('注册成功');
-                layer.msg('注册成功，请登录')
-                $('#link_login').click()
-            })
-
-
-
+                layer.msg('登录成功！')
+                localStorage.setItem('token',res.token)
+                location.href='/index.html'
+            }
+        })
     })
 })
